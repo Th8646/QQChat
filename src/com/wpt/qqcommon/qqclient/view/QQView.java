@@ -44,8 +44,8 @@ public class QQView {
                     String pwd = Utility.readString(50);
 
                     //到服务端，验证该用户是否合法...带完善（通过UserClientService类实现）
-                    if (userClientService.checkUser(userID,pwd)) {
-                        System.out.println("==============欢迎(用户" + userID + ")==============");
+                    if (userClientService.checkUser(userID, pwd)) {
+                        System.out.println("==============欢迎(用户" + userID + "登录成功)==============");
                         while (loop) {
                             System.out.println("\n=============网络通信系统二级菜单（用户" + userID + "）=================");
                             System.out.println("\t\t 1 显示在线用户列表");
@@ -55,7 +55,7 @@ public class QQView {
                             System.out.println("\t\t 9 退出系统");
                             System.out.println("请输入你的选择：");
                             key = Utility.readString(1);
-                            switch (key){
+                            switch (key) {
                                 case "1":
                                     System.out.println("显示在线用户列表");
                                     break;
@@ -69,7 +69,7 @@ public class QQView {
                                     System.out.println("发送文件");
                                     break;
                                 case "9":
-                                    loop=false;
+                                    loop = false;
                                     break;
                             }
                         }
