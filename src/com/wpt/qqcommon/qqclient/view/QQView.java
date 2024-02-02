@@ -3,7 +3,10 @@ package com.wpt.qqcommon.qqclient.view;/**
  * @date 2024/2/1 21:07
  */
 
+import com.wpt.qqcommon.qqclient.service.UserClientService;
 import com.wpt.qqcommon.qqclient.utils.Utility;
+
+import java.io.IOException;
 
 /**
  * @projectName: QQClient
@@ -17,13 +20,14 @@ import com.wpt.qqcommon.qqclient.utils.Utility;
 public class QQView {
     private boolean loop = true;   //控制是否显示菜单
     private String key = ""; //接收用户的键盘输入
+    private UserClientService userClientService = new UserClientService();//用于登录服务器/注册用户进行验证
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, ClassNotFoundException {
         QQView qqView = new QQView();
         qqView.mianMenu();
     }
 
-    public void mianMenu() {
+    public void mianMenu() throws IOException, ClassNotFoundException {
         while (loop) {
             System.out.println("===========欢迎登录网络通信系统============");
             System.out.println("\t\t 1 登录系统");
@@ -39,8 +43,8 @@ public class QQView {
                     System.out.println("请输入密码：");
                     String pwd = Utility.readString(50);
 
-                    //到服务端，验证该用户是否合法...带完善
-                    if (true) {
+                    //到服务端，验证该用户是否合法...带完善（通过UserClientService类实现）
+                    if (userClientService.checkUser(userID,pwd)) {
                         System.out.println("==============欢迎(用户" + userID + ")==============");
                         while (loop) {
                             System.out.println("\n=============网络通信系统二级菜单（用户" + userID + "）=================");
