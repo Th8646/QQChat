@@ -1,10 +1,10 @@
-package com.wpt.qqcommon.qqclient.view;/**
+package com.wpt.qqclient.view;/**
  * @author wpt@onlying.cn
  * @date 2024/2/1 21:07
  */
 
-import com.wpt.qqcommon.qqclient.service.UserClientService;
-import com.wpt.qqcommon.qqclient.utils.Utility;
+import com.wpt.qqclient.service.UserClientService;
+import com.wpt.qqclient.utils.Utility;
 
 import java.io.IOException;
 

@@ -1,4 +1,4 @@
-package com.wpt.qqcommon.qqclient.utils;
+package com.wpt.qqclient.utils;
 
 
 /**

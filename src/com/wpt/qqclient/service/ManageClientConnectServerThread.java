@@ -1,10 +1,9 @@
-package com.wpt.qqcommon.qqclient.service;/**
+package com.wpt.qqclient.service;/**
  * @author wpt@onlying.cn
  * @date 2024/2/2 20:21
  */
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 /**
  * @projectName: QQClient

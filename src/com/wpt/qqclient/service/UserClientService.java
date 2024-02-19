@@ -1,4 +1,4 @@
-package com.wpt.qqcommon.qqclient.service;/**
+package com.wpt.qqclient.service;/**
  * @author wpt@onlying.cn
  * @date 2024/2/2 19:47
  */
@@ -12,7 +12,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetAddress;
 import java.net.Socket;
-import java.net.UnknownHostException;
 
 /**
  * @projectName: QQClient
