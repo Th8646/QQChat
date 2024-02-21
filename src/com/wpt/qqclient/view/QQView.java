@@ -25,6 +25,7 @@ public class QQView {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         QQView qqView = new QQView();
         qqView.mianMenu();
+        System.out.println("客户端退出系统...");
     }
 
     public void mianMenu() throws IOException, ClassNotFoundException {
@@ -57,7 +58,8 @@ public class QQView {
                             key = Utility.readString(1);
                             switch (key) {
                                 case "1":
-                                    System.out.println("显示在线用户列表");
+                                    //调用方法获取在线用户列表
+                                    userClientService.onlineFriendList();
                                     break;
                                 case "2":
                                     System.out.println("群发消息");

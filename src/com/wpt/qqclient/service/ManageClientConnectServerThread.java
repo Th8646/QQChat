@@ -19,13 +19,13 @@ public class ManageClientConnectServerThread {
     private static HashMap<String, ClientConnectServerThread> hm = new HashMap<>();
 
     //将线程加入集合
-    public static void addClientConnectSgeterverThread(String userId,
+    public static void addClientConnectServerThread(String userId,
                                                     ClientConnectServerThread clientConnectServerThread){
         hm.put(userId,clientConnectServerThread);
     }
     //线程从集合取出  通过userID得到线程
-    public static  void getClientConnectSgeterverThread(String userId){
-        hm.get(userId);
+    public static  ClientConnectServerThread getClientConnectServerThread(String userId){
+        return hm.get(userId);
     }
 
 }

@@ -49,7 +49,7 @@ public class UserClientService {
             //启动客户端线程
             clientConnectServerThread.start();
             //为了客户端的扩展，将线程放入集合，统一进行管理
-            ManageClientConnectServerThread.addClientConnectSgeterverThread(userId, clientConnectServerThread);
+            ManageClientConnectServerThread.addClientConnectServerThread(userId, clientConnectServerThread);
             b = true;
         } else {
             //登录失败，不启动通信线程，关闭socket
@@ -57,6 +57,30 @@ public class UserClientService {
 
         }
         return b;
+    }
+
+    //向服务器请求在线用户列表
+    public void onlineFriendList() {
+        //发送Message，类型MESSAGE_GET_ONLINE_FRIEND
+        Message message = new Message();
+        message.setMesType(MessageType.MESSAGE_GET_ONLINE_FRIEND);
+        message.setSender(u.getUserID());
+        //发送给服务器--得到当前线程的socket对应的ObjectOutputStream对象
+        try {
+            //从管理线程的集合中通过userId，得到线程对象
+            ClientConnectServerThread clientConnectServerThread = ManageClientConnectServerThread.getClientConnectServerThread(u.getUserID());
+            //得到userId对应线程对象关联的Socket
+            Socket socket = clientConnectServerThread.getSocket();
+            //获取当前线程Socket对应的ObjectOutputStream对象
+            ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+            oos.writeObject(message);//发送一个Message对象，向服务端要求在线用户列表
+
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 }
