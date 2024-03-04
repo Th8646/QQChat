@@ -3,6 +3,8 @@ package com.wpt.qqclient.view;/**
  * @date 2024/2/1 21:07
  */
 
+import com.wpt.qqclient.service.FileClientService;
+import com.wpt.qqclient.service.MessageClientService;
 import com.wpt.qqclient.service.UserClientService;
 import com.wpt.qqclient.utils.Utility;
 
@@ -21,6 +23,8 @@ public class QQView {
     private boolean loop = true;   //控制是否显示菜单
     private String key = ""; //接收用户的键盘输入
     private UserClientService userClientService = new UserClientService();//用于登录服务器/注册用户进行验证
+    private MessageClientService messageClientService = new MessageClientService();//用于消息的发送/聊天/群聊
+    private FileClientService fileClientService = new FileClientService();//用于传输文件
 
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         QQView qqView = new QQView();
@@ -62,15 +66,31 @@ public class QQView {
                                     userClientService.onlineFriendList();
                                     break;
                                 case "2":
-                                    System.out.println("群发消息");
+                                    System.out.println("请输入想对大家说的话");
+                                    String s = Utility.readString(100);
+                                    //将消息封装成message对象
+                                    messageClientService.sendMessageToAll(s, userID);
                                     break;
                                 case "3":
-                                    System.out.println("私聊消息");
+                                    System.out.println("请输入想聊天的用户号（在线）：");
+                                    String getterId = Utility.readString(50);
+                                    System.out.println("请输入想说的话：");
+                                    String content = Utility.readString(100);
+                                    //调用方法，将消息发送到服务端
+                                    messageClientService.sendMessageToOne(content, userID, getterId);
                                     break;
                                 case "4":
-                                    System.out.println("发送文件");
+                                    System.out.println("请输入你想发送文件的用户(在线用户):");
+                                    getterId = Utility.readString(50);
+                                    System.out.println("请输入发送文件的路径(形式 d:\\xx.jpg)");
+                                    String src = Utility.readString(100);
+                                    System.out.println("请输入把文件发送到对方的路径(形式 d:\\xx.jpg)");
+                                    String dest = Utility.readString(100);
+                                    fileClientService.sendFileToOne(src, dest, userID, getterId);
                                     break;
                                 case "9":
+                                    //调用方法，给服务器端发送退出系统的message
+                                    userClientService.logout();
                                     loop = false;
                                     break;
                             }
